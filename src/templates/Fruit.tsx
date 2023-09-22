@@ -25,7 +25,7 @@ const Fruit = ({ fruit, index }: { fruit: FruitType; index: number }) => {
   };
 
   return (
-    <div>
+    <List>
       {isNameActive ? (
         <input
           value={fruitName}
@@ -37,17 +37,36 @@ const Fruit = ({ fruit, index }: { fruit: FruitType; index: number }) => {
         </span>
       )}
       <DELETEBtn onClick={() => deleteMutation.mutate(id)}>삭제</DELETEBtn>
-      <DELETEBtn onClick={handleCancel}>취소</DELETEBtn>
+      <CANCELBtn onClick={handleCancel}>취소</CANCELBtn>
       <EDITBtn onClick={handleSave}>{isNameActive ? "저장" : "수정"}</EDITBtn>
-    </div>
+    </List>
   );
 };
+
+const List = styled.div`
+  input {
+    width: 200px;
+    height: 30px;
+    font-size: 26px;
+  }
+`;
 
 const DELETEBtn = styled.button`
   cursor: pointer;
   border: none;
   border-radius: 5px;
   background-color: red;
+  margin-left: 15px;
+  font-size: 20px;
+  color: #ffffff;
+  height: 30px;
+`;
+
+const CANCELBtn = styled.button`
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: blue;
   margin-left: 15px;
   font-size: 20px;
   color: #ffffff;
