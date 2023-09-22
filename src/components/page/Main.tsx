@@ -2,36 +2,32 @@ import { useState } from "react";
 import styled from "styled-components";
 
 import useGetFruits from "../../api/useGetFruits";
+import usePostFruits from "../../api/usePostFruits";
+import Fruit from "../../templates/Fruit";
+import { FruitType } from "../../types/Fruit";
 
 const Main = () => {
   const [name, setName] = useState("");
-  const [id, setId] = useState("");
   const { data } = useGetFruits();
+  const postMutation = usePostFruits();
 
-  // const handleAddItem = () => {
-  //   if (name && id) {
-  //     const newItem = { id: Number(id), frname: name };
-  //     setFruitsList([...fruitsList, newItem]);
-  //     setName("");
-  //     setId("");
-  //   }
-  // };
+  const handleCreate = () => {
+    postMutation.mutate({ name });
+    setName("");
+  };
 
+  if (!data) return null;
   return (
     <Container>
       <Title>🍓 아이 엠 그라운드 과일 이름 대기 🍓</Title>
       <Add>
         <div>이름 :</div>
         <input value={name} onChange={(e) => setName(e.target.value)} />
-        <div>ID :</div>
-        <input value={id} onChange={(e) => setId(e.target.value)} />
       </Add>
-      <Button>+</Button>
+      <ADDBtn onClick={handleCreate}>🚀</ADDBtn>
       <List>
-        {data.map(({ id, name }: any) => (
-          <div key={id}>
-            {id}.{name}
-          </div>
+        {data.map((fruit: FruitType, i: number) => (
+          <Fruit key={fruit.id} fruit={fruit} index={i} />
         ))}
       </List>
     </Container>
@@ -43,6 +39,7 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  text-align: center;
 `;
 
 const Title = styled.h2`
@@ -55,21 +52,23 @@ const Add = styled.div`
   input {
     font-size: 24px;
     height: 24px;
+    border-radius: 5px;
   }
 `;
 
-const Button = styled.button`
+const ADDBtn = styled.button`
   cursor: pointer;
-  font-size: 18px;
-  width: 250px;
-  border: 1px solid #000000;
-  background-color: #ffffff;
+  border: 1px solid blue;
+  border-radius: 5px;
   margin-top: 10px;
+  font-size: 18px;
+  width: 265px;
+  background-color: #ffffff;
 `;
 
 const List = styled.div`
   margin: 20px 0 0;
-  font-size: 20px;
+  font-size: 50px;
   div {
     margin: 10px auto;
   }
