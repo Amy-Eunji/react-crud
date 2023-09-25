@@ -11,7 +11,6 @@ const Fruit = ({ fruit, index }: { fruit: FruitType; index: number }) => {
   const deleteMutation = useDeleteFruits();
   const [fruitName, setFruitName] = useState(name);
   const [isNameActive, setIsNameActive] = useState(false);
-
   const handleCancel = () => {
     setIsNameActive(false);
     setFruitName(name);
