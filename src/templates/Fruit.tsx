@@ -1,9 +1,9 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-import useDeleteFruits from "../api/useDeleteFruits";
-import usePutFruits from "../api/usePutFruits";
-import { FruitType } from "../types/Fruit";
+import useDeleteFruits from "src/api/useDeleteFruits";
+import usePutFruits from "src/api/usePutFruits";
+import { FruitType } from "src/types/Fruit";
 
 const Fruit = ({ fruit, index }: { fruit: FruitType; index: number }) => {
   const { id, name } = fruit;

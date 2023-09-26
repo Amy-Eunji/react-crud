@@ -1,10 +1,10 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-import useGetFruits from "../../api/useGetFruits";
-import usePostFruits from "../../api/usePostFruits";
-import Fruit from "../../templates/Fruit";
-import { FruitType } from "../../types/Fruit";
+import useGetFruits from "src/api/useGetFruits";
+import usePostFruits from "src/api/usePostFruits";
+import Fruit from "src/templates/Fruit";
+import { FruitType } from "src/types/Fruit";
 
 const Main = () => {
   const [name, setName] = useState("");
